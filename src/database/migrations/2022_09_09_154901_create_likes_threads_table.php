@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('likes_threads', function (Blueprint $table) {
             $table->id();
-            $table->string('user_name',255);
-            $table->string('user_id',255)->unique();
-            $table->string('email',255)->unique();
-            $table->string('password',255);
-            $table->tinyInteger('gender');
-            $table->date('birth');
-            $table->timestamps();
+            $table->foreignId('thread_id')->constrained()->onUpdate('cascade'); //外部キー制約
+            
+            $table->unsignedBigInteger('tag_id'); # 外部キー
+            $table->foreign('tag_id')->references('id')->on('tag_lists');
+            
+            $table->timestamp('created_at');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('likes_threads');
     }
 };

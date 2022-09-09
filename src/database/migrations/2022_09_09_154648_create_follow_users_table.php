@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('follow_users', function (Blueprint $table) {
             $table->id();
-            $table->string('user_name',255);
-            $table->string('user_id',255)->unique();
-            $table->string('email',255)->unique();
-            $table->string('password',255);
-            $table->tinyInteger('gender');
-            $table->date('birth');
+
+            $table->unsignedBigInteger('from_user_id'); # 外部キー
+            $table->foreign('from_user_id')->references('id')->on('users');
+
+            $table->unsignedBigInteger('to_user_id'); # 外部キー
+            $table->foreign('to_user_id')->references('id')->on('users');
+
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('follow_users');
     }
 };
