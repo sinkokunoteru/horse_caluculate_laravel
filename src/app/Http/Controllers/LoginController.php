@@ -11,7 +11,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class LoginController extends Controller
 {
 
-
     //ログイン画面を表示する
     public function dispLogin()
     {
@@ -22,12 +21,16 @@ class LoginController extends Controller
     //ログイン認証
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            // 認証に成功した
+        $credentials_id = array('user_id'=>$request->email,'password'=>$request->password);
+        $credentials_email = $request->only('email', 'password');
+        // user_idでの認証
+        if (Auth::attempt($credentials_id)) {
             return redirect()->intended('home');
+        // emailでの認証
+        }if(Auth::attempt($credentials_email)){
+            return redirect()->intended('home');
+        //認証に失敗した
         }else{
-            //認証に失敗した
             return view('results.finish',['msg'=>__("msg.error.different"), 'link'=>Link::LOGIN, 'value'=>__("msg.value.home")]);
         }
         
