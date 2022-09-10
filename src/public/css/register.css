@@ -1,0 +1,17 @@
+.form-wrapper{
+    text-align: center;
+}
+
+.gender-box{
+    display: flex;
+}
+
+.alert{
+    list-style: none;
+    color: red;
+}
+
+li{
+    list-style: none;
+    color: red;
+}
