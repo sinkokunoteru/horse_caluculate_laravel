@@ -34,6 +34,6 @@ class RegisterController extends Controller
     public function createUser(Request $request)
     {
         User::create($request->all());
-        return view('results.finish',['msg'=>__("msg.success.register"), 'link'=>Link::HOME, 'value'=>__("msg.value.home")]);
+        return view('results.finish',['msg'=>__("msg.success.register"), 'value'=>__("msg.value.login"), 'link'=>Link::LOGIN]);
     }
 }

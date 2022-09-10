@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,13 +20,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', [RegisterController::class, 'dispRegister'])->name('home');
+Route::get('home', [HomeController::class, 'dispHome'])->name('home');
 
 Route::get('register', [RegisterController::class, 'dispRegister'])->name('register');
 
 Route::post('register', [RegisterController::class, 'createUser']);
 
 Route::post('register_check', [RegisterController::class, 'checkRegister'])->name('register_check');
+
+Route::get('login', [LoginController::class, 'dispLogin'])->name('login');
+
+Route::post('login', [LoginController::class, 'authenticate']);
 
 
 
