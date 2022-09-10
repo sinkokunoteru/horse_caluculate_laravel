@@ -16,6 +16,7 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
+
     //登録確認画面を表示する
     public function checkRegister(RegisterRequest $request) 
     {
@@ -30,10 +31,13 @@ class RegisterController extends Controller
         'birth_view'=>$birth,]);
     }
 
+
     //ユーザーモデルに登録処理をさせる
     public function createUser(Request $request)
     {
         User::create($request->all());
         return view('results.finish',['msg'=>__("msg.success.register"), 'value'=>__("msg.value.login"), 'link'=>Link::LOGIN]);
     }
+
+
 }

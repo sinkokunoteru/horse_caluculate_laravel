@@ -1,15 +1,16 @@
 @extends('layouts/base')
 
-@section('title', 'home')
+@section('title', 'ホーム')
 @section('css')
-{{-- 使いたいcss --}}
+{{-- 使いたいCSS --}}
 @endsection
 
 @section('content')
     <div class="main-content">
-        <h1>ホームページ</h1>
+        <a>これから作りマッスル</a>
     </div>
 
 @endsection
+
 
 

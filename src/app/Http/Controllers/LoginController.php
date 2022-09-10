@@ -11,23 +11,18 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class LoginController extends Controller
 {
 
+
+    //ログイン画面を表示する
     public function dispLogin()
     {
         return view('auth.login');
     }
 
-    /**
-     * 認証を処理する
-     *
-     * @param  \Illuminate\Http\Request $request
-     *
-     * @return Response
-     */
-    public function authenticate(Request $request)
+
+    //ログイン認証
+    public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        exit(var_dump($credentials));
-
         if (Auth::attempt($credentials)) {
             // 認証に成功した
             return redirect()->intended('home');
@@ -36,5 +31,15 @@ class LoginController extends Controller
             return view('results.finish',['msg'=>__("msg.error.different"), 'link'=>Link::LOGIN, 'value'=>__("msg.value.home")]);
         }
         
+    }
+
+
+    //ログアウト処理
+    public function logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('login');
     }
 }
