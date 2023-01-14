@@ -15,7 +15,7 @@
     </div>
     <nav>
         <ul class="nav-list ">
-            <li class="current"><a href={{ route('home') }} class="nav-list-item navI">HOME</a></li>
+            <li><a href={{ route('home') }} class="nav-list-item navI">HOME</a></li>
             <li><a href={{ route('mypage') }} class="nav-list-item navI">MY PAGE</a></li>
             <li><a href={{ route('register') }} class="nav-list-item navI">COMMUNITY</a></li>
             <li><a href={{ route('register') }} class="nav-list-item navI">GUIDE</a></li>

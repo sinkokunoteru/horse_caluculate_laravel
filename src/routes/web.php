@@ -21,8 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', [HomeController::class, 'dispHome'])->name('home');
-
 Route::get('register', [RegisterController::class, 'dispRegister'])->name('register');
 
 Route::post('register', [RegisterController::class, 'createUser']);
@@ -38,6 +36,8 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 //ログインユーザーのみアクセス可能
 Route::middleware(['auth'])->group(function () {
+
+Route::get('home', [HomeController::class, 'dispHome'])->name('home');
 
 Route::get('mypage', [UsersController::class, 'dispMypage'])->name('mypage');
 

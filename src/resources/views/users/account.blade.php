@@ -9,20 +9,12 @@
 @section('content')
     <div class="main-content">
         <h1>アカウント情報</h1>
-        {{-- コンポーネント等で分けたほうがいいかも --}}
-        <div class="nav-content">
-            <nav>
-                <ul class="nav-list">
-                    <li><a href={{ route('mypage') }} class="nav-list-item navI">COMMUNITY LIST</a></li>
-                    <li class="current"><a href={{ route('account') }} class="nav-list-item navI">ACCOUNT</a></li>
-                </ul>
-            </nav>
-        </div>{{-- /nav-content --}}
+        @include('includes.navi')
         <div class="alert" id="alert">
             @if(session('status'))
             <div class="alert-area">
                 <div class="alert-clear">
-                    <button class="alert-clear__button" onclick="clearSession()">×</button>
+                    <button class="alert-clear__button" onclick="clearAlert()">×</button>
                 </div>
                 <h2>{{ session('status') }}</h2>
             </div>
