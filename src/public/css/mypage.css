@@ -48,3 +48,17 @@ nav ul li a:hover{
 .users-item{
     margin: 10px;
 }
+
+.alert-area{
+    border: 1px #333 solid;
+}
+
+.alert-clear{
+    text-align: right;
+    position: relative;
+}
+
+.alert-clear__button{
+    position: absolute;
+    right: 0;
+}

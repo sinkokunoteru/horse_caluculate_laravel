@@ -17,7 +17,6 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-
     //ログイン認証
     public function login(Request $request)
     {
@@ -33,9 +32,7 @@ class LoginController extends Controller
         }else{
             return view('results.finish',['msg'=>__("msg.error.different"), 'link'=>Link::LOGIN, 'value'=>__("msg.value.home")]);
         }
-        
     }
-
 
     //ログアウト処理
     public function logout(Request $request)

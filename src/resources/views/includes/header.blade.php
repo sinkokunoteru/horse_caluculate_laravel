@@ -5,7 +5,7 @@
         @if (Auth::check())
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 <a>{{Auth::user()->user_name}}</a>
-                <a href="{{route('logout')}}">ログアウト</a>  
+                <a href="{{route('logout')}}">ログアウト</a>
         {{-- ログインしていなければログインリンクと新規登録リンク --}}
         @else
                 <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">ログイン</a>
@@ -13,13 +13,13 @@
             </div>
         @endif
     </div>
-    <nav>  
-        <ul class="nav-list ">           
+    <nav>
+        <ul class="nav-list ">
             <li class="current"><a href={{ route('home') }} class="nav-list-item navI">HOME</a></li>
             <li><a href={{ route('mypage') }} class="nav-list-item navI">MY PAGE</a></li>
             <li><a href={{ route('register') }} class="nav-list-item navI">COMMUNITY</a></li>
             <li><a href={{ route('register') }} class="nav-list-item navI">GUIDE</a></li>
         </ul>
     </nav>
-</html>
+</div>
 

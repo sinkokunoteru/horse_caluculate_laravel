@@ -45,4 +45,8 @@ Route::get('mypage/account', [UsersController::class, 'dispAccount'])->name('acc
 
 Route::get('mypage/account/edit', [UsersController::class, 'dispAccountEdit'])->name('account.edit');
 
+Route::post('mypage/account/edit/check', [UsersController::class, 'dispAccountUpdateCheck'])->name('account.edit.check');
+
+Route::patch('mypage/account/update', [UsersController::class, 'update'])->name('account.update');
+
 });

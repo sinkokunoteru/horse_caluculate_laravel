@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -25,7 +26,8 @@ class UsersController extends Controller
     //アカウント情報編集ページを表示する
     public function dispAccountEdit()
     {
-        return view('users.accountEdit');
+        $user = $this->getUserInfo();
+        return view('users.accountEdit', compact('user'));
     }
 
     //アカウント情報ページに表示するユーザー情報の取得
@@ -48,5 +50,27 @@ class UsersController extends Controller
         $user =$this->getUserInfo();
         $birth = date_create($user->birth);
         return $birth;
+    }
+
+    //アカウント情報編集の確認ページ
+    public function dispAccountUpdateCheck(Request $request)
+    {
+        $userName = $request->input('user_name');
+        $email = $request->input('email');
+        $password = $request->input('password');
+        return view('users.accountEditCheck',compact('userName', 'email', 'password'));
+    }
+
+    //アカウント情報アップデート処理
+    public function update(Request $request)
+    {
+        $user = $this->getUserInfo();
+        $userInfo = [
+            'user_name' => $request->user_name ?? $user->user_name,
+            'email' => $request->email ?? $user->email,
+            'password' =>Hash::make($request->password) ?? $user->password,
+        ];
+        User::where('id', Auth::user()->id)->update($userInfo);
+        return redirect()->route('account')->with('status', 'アカウント情報の編集が完了しました');
     }
 }
